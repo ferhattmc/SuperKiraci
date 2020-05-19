@@ -1,0 +1,68 @@
+<ion-header no-border>
+  <ion-toolbar no-border>
+    <ion-title>
+      <h2>SÜPER KİRACI</h2>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/profile']">
+        <ion-icon color="primary" slot="icon-only" name="contact"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding text-center scroll-y="false">
+  <img style="margin:auto;width: 40%;" src="assets/icon/ionic_firebase-logo.png" alt="">
+  <ion-button class="goodfont boton" margin-bottom mode="ios" expand="block" (click)="gotoLogin()">Giriş Yap
+  </ion-button>
+  <div class="form">
+
+    <ion-card color="" mode="ios">
+
+
+      <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
+
+        <ion-slide>
+          <div class="slide">
+            <img src="../../assets/1.jpg" />
+            <h2>Hoşgeldiniz</h2>
+            <p> <b>Süper Kiracı</b> ile artık ev sahipleri gönül rahatlığı ile kiracılarını evini daha vermeden
+              tanıyabilecek.</p>
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <img src="../../assets/2.jpg" />
+          <h2>Güvenilirlik</h2>
+          <p> <b>Süper Kiracı</b> ile artık ev sahipleri gönül rahatlığı ile kiracılarını evini daha vermeden
+            tanıyabilecek.</p>
+        </ion-slide>
+
+        <ion-slide>
+          <img src="../../assets/3.jpg" />
+          <h2>Sadakat</h2>
+          <p> <b>Süper Kiracı</b> ile artık ev sahipleri gönül rahatlığı ile kiracılarını evini daha vermeden
+            tanıyabilecek.</p>
+        </ion-slide>
+
+        <ion-slide>
+          <img src="../../assets/4.jpg" />
+          <h2>Giriş Yapmak İster Misin?</h2>
+          <b>Haydi durma bas BUTONA :)</b>
+        </ion-slide>
+
+      </ion-slides>
+    </ion-card>
+    <br>
+    <br>
+    <!-- Not working right now!!!  -->
+
+  </div>
+
+  <!-- Animation -->
+
+
+
+
+
+</ion-content>
