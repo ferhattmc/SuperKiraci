@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
-
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -17,7 +17,7 @@ export class LoginPage {
   passwordType = 'password';
   passwordIcon = 'eye-off';
 
-  constructor(public api: ApiService, public rout: Router, public alertController: AlertController) { }
+  constructor(public storage: Storage, public api: ApiService, public rout: Router, public alertController: AlertController) { }
 
   async login() {
 
@@ -26,7 +26,9 @@ export class LoginPage {
     try {
       this.api.login(username, password).subscribe(res => {
         console.log(res);
+        this.storage.set('isLogin', true);
       }, err => { console.log(err) })
+      this.storage.get('isLogin');
       // const res = await this.afs.auth.signInWithEmailAndPassword(username, password);
       // console.log(res);
       setTimeout(() => {
@@ -87,7 +89,9 @@ export class LoginPage {
     });
     await alert.present();
   }
-
+  lostPassword() {
+    this.rout.navigateByUrl('lost-password');
+  }
   hideShowPassword() {
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';

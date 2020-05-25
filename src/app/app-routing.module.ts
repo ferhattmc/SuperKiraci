@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' }
+  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
+  { path: 'lost-password', loadChildren: './lost-password/lost-password.module#LostPasswordPageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
-interface RegisterRequest {
-  email: string;
-  first_name: string;
-  last_name: string;
-  password: string;
-}
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -37,12 +31,11 @@ export class RegisterPage {
       this.rout.navigate(['/register']);
     } else {
       try {
-        // this.api.register(email, first_name, last_name, password).subscribe(res => {
         let request: RegisterRequest = {
-          email: 'ferhatttmc@gmail.com',
-          first_name: 'Ferhat',
-          last_name: 'Tamci',
-          password: '123456'
+          email: email,
+          first_name: first_name,
+          last_name: last_name,
+          password: password
         };
         this.api.register(request).subscribe(res => {
           console.log(res);

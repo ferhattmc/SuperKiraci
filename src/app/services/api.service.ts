@@ -8,12 +8,7 @@ const httpOptions = {
     'Content-Type': 'application/json',
   })
 };
-interface RegisterRequest {
-  email: string;
-  first_name: string;
-  last_name: string;
-  password: string;
-}
+
 const apiUrl = "https://www.superkiraci.com/wp-json/wp/v2/users/";
 @Injectable({
   providedIn: 'root'
@@ -29,8 +24,17 @@ export class ApiService {
       map(this.extractData),
       catchError(this.handleError));
   }
+  generateCode(credential: GenerateCodeRequest): Observable<any> {
+    return this.http.post(apiUrl + "sifreunuttum", credential, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+  generatePassword(credential: GeneratePasswordRequest): Observable<any> {
+    return this.http.post(apiUrl + "sifreyenile", credential, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
   register(credential: RegisterRequest): Observable<any> {
-    // let request = { email: 'ferhattmc@gmail.com', first_name: first_name, last_name: last_name, password: password };
     return this.http.post(apiUrl + "uyeol", JSON.stringify(credential), httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
