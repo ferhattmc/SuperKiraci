@@ -1,24 +1,29 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides } from '@ionic/angular';
-
+import { IonSlides, MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-
-
   item: any;
   id: string;
+  isLogin: string;
   slideOptions = {
     initialSlide: 1,
     speed: 500,
   };
-  constructor(
-    private router: Router) {
+  constructor(private router: Router, public storage: Storage, public menuCtrl: MenuController) {
+    this.storage.get("isLogin").then((val: any) => {
+      this.isLogin = val;
+      if (val === "true")
+        this.menuCtrl.enable(true, 'myMenu');
+      else
+        this.menuCtrl.enable(false, 'myMenu');
+    });
   }
 
   slidesDidLoad(slides: IonSlides) {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { LoadingController, AlertController } from '@ionic/angular';
-import { LoadingService } from 'src/util/loading.service';
+import { ApiService } from '../../../providers/services/api.service';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { LoadingService } from 'src/providers/util/loading.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from 'src/providers/util/alert.service';
 
 @Component({
   selector: 'app-lost-password',
@@ -30,7 +31,7 @@ export class LostPasswordPage implements OnInit {
 
   passwordType = 'password';
   passwordIcon = 'eye-off';
-  constructor(public api: ApiService, public loadingController: LoadingService, private formBuilder: FormBuilder, public alertController: AlertController) {
+  constructor(public api: ApiService, public navCtrl: NavController, public loadingController: LoadingService, private formBuilder: FormBuilder, public alertService: AlertService) {
 
   }
   public errorMessages = {
@@ -55,13 +56,13 @@ export class LostPasswordPage implements OnInit {
       email: this.generateCodeForm.value.email
     };
     this.api.generateCode(request).subscribe(res => {
-      this.error(res.message);
+      this.alertService.presentAlert("Uyarı", res.message)
       this.loadingController.showLoader(false);
     }, err => { console.log(err) })
   }
   generatePassword() {
     if (!this.generateCodeForm.valid) {
-      this.error("Lütfen kodunu girdiğiniz e-mail adresini giriniz!")
+      this.alertService.presentAlert("Uyarı", "Lütfen kodunu girdiğiniz e-mail adresini giriniz!")
     }
     else {
       this.loadingController.showLoader(true);
@@ -71,17 +72,16 @@ export class LostPasswordPage implements OnInit {
         yenisifre: this.lostPasswordForm.value.password
       };
       this.api.generatePassword(request).subscribe(res => {
-        this.error(res.message);
+        if (res.code === "basarili") {
+          this.alertService.presentAlertConfirm("Başarılı!", res.message);
+        }
+        else if (res.code === "hatali") {
+          this.alertService.presentAlert("Uyarı", res.message)
+        }
+
         this.loadingController.showLoader(false);
       }, err => { console.log(err) })
     }
-  }
-  async error(mensaje: string) {
-    const alert = await this.alertController.create({
-      message: mensaje,
-      buttons: ['OK']
-    });
-    await alert.present();
   }
   hideShowPassword() {
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
@@ -90,6 +90,7 @@ export class LostPasswordPage implements OnInit {
   moveFocus(nextElement) {
     nextElement.setFocus();
   }
-
-
+  goBack() {
+    this.navCtrl.goBack();
+  }
 }

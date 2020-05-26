@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { LoadingService } from 'src/util/loading.service';
+import { LoadingService } from 'src/providers/util/loading.service';
+import { AlertService } from 'src/providers/util/alert.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,7 +19,9 @@ import { LoadingService } from 'src/util/loading.service';
   providers: [
     StatusBar,
     SplashScreen,
+    Storage,
     LoadingService,
+    AlertService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -45,12 +45,6 @@ h2 {
     font-size: 1.5rem;
     color: #232B38;
 }
-
-h3 {
-    color: rgb(0, 0, 0);
-    font-weight: 700;
-}
-
 .input-card {
     border-radius: 5rem;
     background: #F5F6F7;
@@ -156,4 +150,8 @@ input.success {
 
 .buttone.google:hover {
     box-shadow: 0 1px 5px rgba(39, 68, 74, 0.2);
+}
+.error-message {
+    color: red;
+    align-items: flex-start;
 }

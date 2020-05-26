@@ -1,3 +1,27 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="['profile']">
+            <ion-icon name="person"></ion-icon>
+            Profil
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item [routerLink]="['']" routerDirection='root' (click)="Logout()">
+          <ion-icon name="log-out"></ion-icon>
+          Çıkış Yap
+        </ion-item>
+      </ion-menu-toggle>
+
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" main></ion-router-outlet>
 </ion-app>

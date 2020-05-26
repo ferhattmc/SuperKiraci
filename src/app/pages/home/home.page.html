@@ -1,19 +1,25 @@
 <ion-header no-border>
   <ion-toolbar no-border>
-    <ion-title>
-      <h2>SÜPER KİRACI</h2>
+    <ion-title mode="ios" color="primary">
+      <h3 class="goodfont">Süper Kiracı</h3>
     </ion-title>
-    <!-- <ion-buttons slot="start">
+    <ion-buttons slot="start" *ngIf="(isLogin==='true')">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="(isLogin==='true')">
       <ion-button [routerLink]="['/profile']">
         <ion-icon color="primary" slot="icon-only" name="contact"></ion-icon>
       </ion-button>
-    </ion-buttons> -->
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding text-center scroll-y="false">
+<ion-content padding text-center>
   <img style="margin:auto;width: 40%;" src="assets/icon/ionic_firebase-logo.png" alt="">
-  <ion-button class="goodfont boton" margin-bottom mode="ios" expand="block" (click)="gotoLogin()">Giriş Yap
+  <ion-button *ngIf="!(isLogin==='true')" class="goodfont boton" margin-bottom mode="ios" expand="block"
+    (click)="gotoLogin()">
+    Giriş Yap
   </ion-button>
   <div class="form">
 

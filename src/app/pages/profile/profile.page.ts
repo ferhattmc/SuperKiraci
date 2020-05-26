@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +13,7 @@ export class ProfilePage implements OnInit {
   item: any;
   anuncios: any;
   empty: Boolean;
-  constructor(private rout: Router) {
+  constructor(private rout: Router, public storage: Storage) {
 
   }
 

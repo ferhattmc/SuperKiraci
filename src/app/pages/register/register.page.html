@@ -1,0 +1,71 @@
+<ion-header no-border>
+  <ion-toolbar no-border>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon mode="ios" color="primary" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title mode="ios" color="primary">
+      <h3 class="goodfont">Süper Kiracı</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding text-center>
+
+  <div class="form">
+    <img style="margin:auto;width: 60%;" src="assets/icon/ionic_firebase-logo.png" alt="">
+    <h4>Kayıt Ol
+    </h4>
+    <div class="form">
+      <form [formGroup]="registerForm" (Submit)="submit()">
+        <ion-list>
+          <ion-item>
+            <ion-input formControlName="email" type="text" placeholder="Email" (keyup.enter)="moveFocus(b)"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-input formControlName="firstName" type="text" #b placeholder="Ad" (keyup.enter)="moveFocus(c)">
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.firstName">
+            <ng-container *ngIf="firstName.hasError(error.type) && firstName.dirty">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item>
+            <ion-input formControlName="lastName" type="text" #c placeholder="Soyad" (keyup.enter)="moveFocus(d)">
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.lastName">
+            <ng-container *ngIf="lastName.hasError(error.type) && lastName.dirty">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <br>
+          <ion-item>
+            <ion-input formControlName="password" [type]="passwordType" #d type="password" (keyup.enter)="register()"
+              placeholder="Şifre"></ion-input>
+            <ion-icon (click)='hideShowPassword()' name="eye" item-right></ion-icon>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.password">
+            <ng-container *ngIf="password.hasError(error.type) && password.dirty">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <br>
+        </ion-list>
+      </form>
+    </div>
+    <br>
+    <ion-button type="submit" [disabled]="!registerForm.valid" class="goodfont boton" mode="ios" fill="solid"
+      expand="block" color="primary" (click)="register()">
+      Kayıt Ol</ion-button>
+    <br>
+    <p class="register-text" (click)="goLogin()"> Zaten Hesabın Var Mı ?<a> Giriş Yap</a> </p>
+  </div>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header no-border>
+  <ion-toolbar no-border>
+    <ion-buttons slot="start" *ngIf="!isLogin">
+      <ion-button (click)="goBack()">
+        <ion-icon mode="ios" color="primary" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title mode="ios" color="primary">
+      <h3 class="goodfont">Süper Kiracı</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding text-center>
+  <div class="form">
+    <img style="margin:auto;width: 60%;" src="assets/icon/ionic_firebase-logo.png" alt="">
+    <h4>Giriş
+    </h4>
+    <form [formGroup]="loginForm" (Submit)="submit()">
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" tabindex="20" (keyup.enter)="moveFocus(b)" placeholder="Email" formControlName="email"
+            required></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.email">
+          <ng-container *ngIf="email.hasError(error.type) && email.dirty">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-input (keyup.enter)="login()" [type]="passwordType" #b placeholder="Password" formControlName="password"
+            required></ion-input>
+          <ion-icon (click)='hideShowPassword()' name="eye" item-right></ion-icon>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.password">
+          <ng-container *ngIf="password.hasError(error.type) && password.dirty">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+      </ion-list>
+    </form>
+    <br>
+    <ion-button type="submit" [disabled]="!loginForm.valid" class="goodfont boton" margin-bottom mode="ios"
+      expand="block" (click)="login()">Giriş Yap
+    </ion-button>
+    <p class="register-text" (click)="lostPassword()"><a>Parolanızı mı unuttunuz? </a> </p>
+    <br><br>
+    <p class="register-text" (click)="goRegister()">Hesabın yok mu?<a> Kayıt Ol</a> </p>
+
+    <div margin-top margin-bottom (click)="loginGmail()" class="tc flex jusify-center align-center flex-wrap w-100">
+      <div class="w-100 tc flex align-center justify-center">
+        <button class="buttone google flex justify-center align-center"><img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+            class="flex self-center pr2"> Google ile Giriş Yap</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
