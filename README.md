@@ -2,7 +2,7 @@
 
 # Super Kiracı
 
-Super Kiracı Mobil Platform
+Super Kiracı Mobil Platforms
 
 ## Setup 
 
